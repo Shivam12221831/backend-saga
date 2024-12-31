@@ -26,3 +26,7 @@ To automatically restart server with code changes
 npm i -g Nodemon
 nodemon -v
 nodemon filename
+
+// Path parameters 
+we can set path of our request as variable and it is stored in req.params
+..
