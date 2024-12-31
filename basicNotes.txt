@@ -1,0 +1,21 @@
+// REPL - Read Evaluate Print LOOP
+for enter into node repl environment you just need to write - node
+
+node
+global (it is same as window obj in web browser)
+.help (to get basic repl node commands)
+
+
+// Local VS Global
+local installation of any package is - npm install packageName
+
+sudo chown -R $USER /usr/loacl/lib/node_modules
+// This command is written because we need admin access before installing blobally.
+// Not writting this command can give error.
+// Then try global installation
+global installation of any package is - npm install -g packageName
+// After global installation we need to link it to run it without any error - npm link packageName
+// So, steps are -
+1- sudo chown -R $USER /usr/loacl/lib/node_modules
+2- npm install -g packageName
+3- npm link packageName
