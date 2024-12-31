@@ -1,0 +1,28 @@
+// Library VS FrameWork
+
+Library - A birray is a collection of pre-written code that can be used to perform specific taks.
+eg-axios
+
+Framework - A framework is a collection of pre-written code that provides a structure for developing software applications.
+eg-express
+
+// Express
+A Node.js web application framework that helps us to make web applications.
+It is used for server side programming.
+There are four task that express do - 
+1- listen for incoming request
+2- parse
+3- match response with routes
+4- response
+
+// Ports
+Ports are the logical endpoints of a network connection that is used to exchange info between a web server and a web client.
+
+// Routing
+It is process of selecting a path for traffic in a network or between or across multiple networks.
+
+// Nodemon
+To automatically restart server with code changes
+npm i -g Nodemon
+nodemon -v
+nodemon filename
