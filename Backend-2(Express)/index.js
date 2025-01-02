@@ -41,3 +41,11 @@ app.get("/:username/:id", (req,res) => {
     let {username,id} = req.params;
     res.send(`This account belongs to @${username} with id : ${id}`);
 })
+
+app.get("/search", (req, res) => {
+    let {q} = req.query;
+    if(!q){
+        res.send("<h1>no query defined...</h1>")
+    }
+    res.send(`<h1>search result for query ${q}</h1>`);
+})

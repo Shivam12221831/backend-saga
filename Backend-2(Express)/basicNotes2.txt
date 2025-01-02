@@ -29,4 +29,5 @@ nodemon filename
 
 // Path parameters 
 we can set path of our request as variable and it is stored in req.params
-..
+.. to learn more go to index.js file
+
