@@ -1,0 +1,9 @@
+// Templating - fixed layout 
+EJS (Embedded JavaScript Templates)
+EJS is a simple templating language that lets you generate HTML markup with plain JavaScript
+
+** If we want to run our project from outside of the it directory then project will no show any response on site because it is unable to find views directory outside its main project directory.
+So, to solve it we just have to add this two line in out index.JavaScript'
+const path = require("path");
+app.set("views", path.join(--dirname, "/views"));
+
