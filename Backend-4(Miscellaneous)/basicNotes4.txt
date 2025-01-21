@@ -1,0 +1,14 @@
+// Get Vs Psot Methods
+-- Get 
+used to get some response
+Data sent in query Strings(limited, string data & visible in url)
+
+-- Post 
+used to POST something(for create/ write / update)
+Data sent via request body ( any type of data)
+
+// Handling Post requests
+- Set up post request route to get some response
+- parse post request data
+app.use(express.urlencoded({ extended : true }));
+app.use(express.json());
