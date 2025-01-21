@@ -7,3 +7,22 @@ So, to solve it we just have to add this two line in out index.JavaScript'
 const path = require("path");
 app.set("views", path.join(--dirname, "/views"));
 
+// Interpolation Syntax
+Interpolation refers to embedding expressions into marked up text.
+** to know more go to "ejs.co" on browser and go to tags part
+
+//Conditional Statements in EJS
+Adding conditions inside EJS
+<% if(diceVal == 6) { %>
+<h2>Nice! Roll dice again.</h2>
+<% } %>
+
+// Serving Static files - like css and JavaScript
+in ejs environment if we want to add static files like css and js then we can call app.use method
+app.use(express.static(folder_name));
+app.use(express.static(path.join(__dirname, "public")));
+
+// Includes - 
+Its provides sub-templates like ejs provide full page Templates
+You just have to make a new folder inside views folder and name it as includes and add all sub-templates file here with extension name of .ejs
+<%- include("includes/fileName.ejs"); %>
