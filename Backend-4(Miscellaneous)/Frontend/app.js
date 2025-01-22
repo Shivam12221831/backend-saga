@@ -45,4 +45,4 @@ class Person{
 
 let person1 = new Person("Shivam", 21);
 let person2 = new Person("Rahul", 23);
-console.log(person1.talk === person2.talk);
+console.log(person1.talk === person2.talk);  // true

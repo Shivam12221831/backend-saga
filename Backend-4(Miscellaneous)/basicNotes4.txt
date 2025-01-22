@@ -12,3 +12,45 @@ Data sent via request body ( any type of data)
 - parse post request data
 app.use(express.urlencoded({ extended : true }));
 app.use(express.json());
+
+// OOPS (Object Oriented Programming)
+To structure our code
+- prototypes
+- New operator
+- constructors
+- classes
+- keywords (extend, super)
+
+// Object prototypes
+Prototypes are the mechanism by which js objects inherit features from one another.
+It is like a single template object that all objects inherit Methods and properties from without having their own copy.
+arr.__proto__   (reference)
+Array.prototype(actual object)
+String. prototype
+
+Every object in JS has a built-in  property, which is called its prototype. The prototype is itself an object, so the prototype will ahve its own prototype, making what's called a prototype chain. The chain when we reach a prototype that has null for its own prototype.
+
+// Factory function
+A fucntion that creates objects
+but it is not used nowadays b/c it is not efficient every function create in it has d/f memory/space for every new object.
+
+// New operator 
+The new operator lets developers create an instance of a user-defined object type or of one of the built-in object types that has a constructor function.
+-- Constructor in js - doesn't return anything & start with capital
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+    // console.log(this);
+}
+Person.prototype.talk = function(){
+    console.log(`Hi, i am ${this.name}`);
+}
+let p1 = new Person("adam", 25);
+
+// Classes
+classes are a template for creating objects
+-The constructor method is a special method of a class for creating and initializing an object instance of that class.
+
+// Inheritance
+Inheritance is a mechanism that allow us to create new classes on the basis of already existing classes
+parentClass(baseClass) ---- inherit ---->  childClass
