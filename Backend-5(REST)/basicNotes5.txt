@@ -22,3 +22,20 @@ res.redirect(url) -> can direct to another built-in page
 
 --show route - get - /posts/:id
 to get one post(using id)
+
+-- creating id for posts
+# uuid package
+Universally unique identifier
+npm i uuid
+const { v4 : uuidv4 } = require("uuid");
+uuidv4();
+
+-- Implement : PAtch - /posts/:id
+update route
+to update specific post
+
+method-override - used to send method from form other than get and post by overriding them
+post X -> Delete | Patch
+
+-- destroy route - /posts/:id
+to delete specific post
