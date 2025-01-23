@@ -1,0 +1,15 @@
+// Faker package in node
+- used to generate fake data 
+npm i @faker-js/faker
+const { faker } = require("@faker-js/faker");
+
+// MYSQL2 package 
+- used to connect node with Mysql
+client(frontend) <- request -> server(backend / APIs) <-> SQL(db)
+connection.end();  // to close connection
+
+// Using SQL from CLI
+- type this command in new terminal
+- & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u root -p // in powershell 
+// create schema.sql
+// source schema.sql  // in CLI
