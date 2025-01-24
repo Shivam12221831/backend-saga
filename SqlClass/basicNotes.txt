@@ -11,5 +11,8 @@ connection.end();  // to close connection
 // Using SQL from CLI
 - type this command in new terminal
 - & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u root -p // in powershell 
-// create schema.sql
-// source schema.sql  // in CLI
+
+// Create sql file in your folder and then work on it
+- create schema.sql
+- source schema.sql  // in CLI
+
