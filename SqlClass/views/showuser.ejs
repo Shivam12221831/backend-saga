@@ -17,6 +17,7 @@
             <th>Email</th>
             <th>Username</th>
             <th>Edit username</th>
+            <th>Delete user</th>
         </tr>
         <% for(user of users){ %>
             <tr>
@@ -28,8 +29,17 @@
                         <button style="background-color: yellowgreen;">Edit username</button>
                     </form>
                 </td>
+                <td>
+                    <form action="/user/<%= user.id %>?_method=DELETE" method="post">
+                        <button style="background-color: lightcoral;">Delete User</button>
+                    </form>
+                </td>
             </tr>
         <% } %>
     </table>
+    <br>
+    <form action="/user/add" method="get" style="text-align: center;">
+        <button style="background-color: crimson; color: aliceblue; height: 30px; margin-bottom: 50px;">Add New User</button>
+    </form>
 </body>
 </html>

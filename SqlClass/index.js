@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require('method-override');
+const {v4 : uuidv4} = require('uuid');
 
 app.use(methodOverride("_method"));
 
@@ -100,22 +101,80 @@ app.get("/user/:id/edit", (req,res) => {
     }
 });
 
-// app.patch("/user/:id", (req,res) => {
-//     let { id } = req.params;
-//     console.log(id);
-//     let user = req.body;
-//     let q = `UPDATE user SET name='${user.username}' WHERE password == ${user.password}`;
-//     try{
-//         connection.query(q, (err, result) => {
-//             if(err) throw err;
-//             console.log(result);
-//         });
-//     } catch(err){
-//         console.log(error);
-//         res.send("You have entered worng password");
-//     }
-//     // res.send("patch is working fine");
-// })
+// UPDATE (db) route
+// 1. search user based on id from params
+// 2. check if (form.password == db.password)
+// 3. update username
+app.patch("/user/:id", (req,res) => {
+    let { id } = req.params;
+    console.log(id);
+    let {username : newUsername, password : formPass} = req.body;
+    let q = `SELECT * FROM user WHERE id=?`;
+    try{
+        connection.query(q, id, (err, result) => {
+            if(err) throw err;
+            let user = result[0];
+            if(user.password != formPass){
+                res.send("Wrong password entered...");
+            } else{
+                let q = `UPDATE user SET name='${newUsername}' WHERE id='${id}'`;
+                try{
+                    connection.query(q, (err, result) => {
+                        if(err) throw err;
+                        // console.log(result);
+                        res.redirect("/user");
+                    });
+                } catch(err){
+                    console.log(err);
+                    res.send("Updation failed...");
+                }
+            }
+        });
+    } catch(err){
+        console.log(error);
+        res.send("Some random error occured!");
+    }
+    // res.send("patch is working fine");
+});
+
+// ADD new user
+//  POST - /user
+app.get("/user/add", (req,res) => {
+    res.render("adduser.ejs");
+});
+
+app.post("/user", (req, res) => {
+    // console.log(req.body);
+    // res.send("getting response successfully");
+    let { username, password, email } = req.body;
+    let newid = uuidv4();
+    let data = [newid, username, email, password];
+    let q = "INSERT INTO user (id, name, email, password) VALUES (?, ?, ?, ?)";
+    try{
+        connection.query(q, data, (err, result) => {
+            if(err) throw err;
+            res.redirect("/user");
+        });
+    }catch(err){
+        console.log(err);
+        res.send("Insertion failed!!!");
+    }
+});
+
+// DELETE user 
+app.delete("/user/:id", (req, res) => {
+    let { id } = req.params;
+    let q = `DELETE FROM user WHERE id='${id}'`;
+    try{
+        connection.query(q, (err, result) => {
+            if(err) throw err;
+            res.redirect("/user");
+        });
+    } catch(err){
+        console.log(err);
+        res.send("Can't able to delete user!");
+    }
+});
 
 const port = 8080;
 app.listen(port, () => {
