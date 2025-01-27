@@ -1,0 +1,84 @@
+1. Check mongodb is installed or not
+open cmd and run mongod --version
+2. Then open mongo shell by typing mongosh
+3. then u enterned mongo shell in temporary db called test. In mongosh temp db will not added to local db until you added some data to it.
+   all show all dbs just type - show dbs
+    just type db to display current working db - db
+    to change woking db type - use newDBName
+*4. most of the Javascript method and lang work on mongosh
+
+// CRUD in mongodb
+1. Insert - insertOne() & insertMany()
+2. Query
+3. Update
+4. Delete
+
+// BSON data (json data in binary form)
+JSON and BSON are cousins just minor unlikeness that are bson doest text_data oriented that make parsing quit easier and it has better space efficiency.
+You can read JSON VS BSON on mongodb site
+In working with mongodb we jsut passed the data in js objects or json format then it get converted in BSON format by mongodb itself. 
+
+// Collections and Documents in mongodb
+Document - mongo stores data in form of documents(BSON docs)
+ex- {
+    name : "al",
+    age : 18,
+    status : "D",
+    groups : ["politics", "news"]
+}  - this is a document containg data of a user. When we make rows with these data then that table called collection
+Collection - MOngoDB stores documents in collections 
+
+// Insert in db
+** insertOne - Inserts a single document into a collection
+db.collectionName.insertOne()
+ - show collections
+ - db.student.insertOne({name:"adam", marks:79})
+ - db.student.find()
+If a collection doest not exist. Mongodb creates the collection when you first store the data for that collection.
+
+** insertMany (array of documents) - Insert multiple document into a collection
+db.student.insertMany([{doc1}, {doc2}, ...])
+
+// Find in db
+db.collection.fin()  - returns everything
+for specific queries 
+db.collection.find({key:value}) -> cursor (reference to original)
+db.collection.findOne({key:value}) -> actual document
+
+// Query operator 
+these operator are used in find() method to fetch data according to some condition
+- to more go to mongodb - resources - operators
+
+// Update in db
+- updateOne() - updates at most a single document that match a specific filter even though multiple docs match the specific filter
+db.collection.updateOne(<filter>, <update>, <options>)
+db.student.updateOne({name:"adam"}, {$set:{marks: 99}})
+
+- updateMany() - update all documents that mathc a specified filter
+db.student.updateMany({city:"aligarh"}, {$set : {city: "new delhi"}})
+
+- replaceOne() - replaces at most a single document that match a specific filter even though multiple docs match the specific filter
+db.student.replaceOne({name:"bob"},{name:"neha", city: "aligarh", marks: 59})
+
+// Nesting - we have doc in which one key has its value as a obj for ex-
+{
+    id : xyz,
+    name: 'farah',
+    performance: {marks: 98, grade: 'A+'}
+}
+to find this type of nested elements we have to follow some rule like
+db.student.findOne( {"performance.marks" : 88})  - these quotes are required
+
+// DELETE in db
+- deleteOne() - used delete a single doc
+db.collection.deleteOne(<filetr>, <options>)
+
+- deleteMany() - used to delete multiple docs
+db.collection.deleteMany(<filetr>, <options>)
+
+- to delete all docs from a db used this command
+db.collection.deleteMany({}) - this empty {} tells to delete all docs of the db
+
+- to drop current working db use
+db.deopDatabase()
+

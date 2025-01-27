@@ -16,3 +16,10 @@ connection.end();  // to close connection
 - create schema.sql
 - source schema.sql  // in CLI
 
+// Routing using data of sql
+- REST
+- GET   /  ->  show np. of user in db
+- GET   /user  -> show users(email, id, username)   -> ejs
+- PATCH  /user/:id  ->  username edit
+- POST  /user  ->  add new user 
+- DELETE  /user/:id  ->  delete user
