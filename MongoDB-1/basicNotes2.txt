@@ -1,0 +1,69 @@
+// Mongoose
+A libraray that creates a connection b/w mongodb and node.js Javascript runtime environment
+It is an ODM (Object Data Modeling) Library.
+
+// Schema
+Schema defines the shapee of the documents within that collection.
+const userSchema = new mongoose.Schema({
+    name : String,
+    email : String,
+    age : Number,
+});
+for further details go to mongoose docs
+
+// Models
+Model in mongoose is a class with which we construct documents
+const User = mongoose.model("User", userSchema);
+
+// Insert
+- inserting one
+const user1 = new User({ name : "Adam", email:"adam@yahoo.in", age:48});
+user1.save();   // to save in db. it is a promise so we can add then and catch also to it.
+
+- insertMany()
+User.insertMany([
+    {name:"Tony", email:"tony@gmail.com", age:50},
+    {name:"Peter", email:"peter@gmail.com", age:30},
+    {name:"Bruce", email:"bruce@gmail.com", age:47},
+]).then((res) => {
+    console.log(res);
+}).catch((err) => {
+    console.log(err);
+});
+
+**// Operation Buffering in mongoose
+Mongoose lets you start using your models immediately, without waiting for mongoose to establish a connection to mongodb
+
+// FIND
+- Model.find()  // returns a Query Obj (thennable)
+* Mongoose Queries are not promises. But they have a .then() and .catch()
+User.find().then((data) => {
+    console.log(data);
+});
+- Model.findOne()  // returns a single result
+User.findOne({age:{$gt: 47}}).then((data) => {
+    console.log(data);
+});
+- Model.findById()  // commonly used
+
+
+// Update
+-- Model.updateOne()
+User.updateOne({name: "Bruce"}, {age: 55}).then((res) => {
+    console.log(res);
+}).catch((err) => console.log(err));
+
+-- Model.updateMany()
+User.updateMany({age : {$gt:48}}, {age: 55}).then((res) => {
+    console.log(res);
+}).catch((err) => console.log(err));
+
+-- Model.findOneAndUpdate(<filter>, <new_key_value>, {new : true})
+-- Model.findByIdAndUpdate("id", <new_key_value>, {new:true})
+
+
+// Delete
+-- Model.deleteOne()
+-- Model.deleteMany()
+-- Model.findOneAndDelete()
+-- Model.findByIdAndDelete()
