@@ -67,3 +67,36 @@ User.updateMany({age : {$gt:48}}, {age: 55}).then((res) => {
 -- Model.deleteMany()
 -- Model.findOneAndDelete()
 -- Model.findByIdAndDelete()
+
+// Schema Validations 
+This is the write way to write schema and give constraints 
+-- go to mongoose docs and read all schema types
+const bookSchema = new mongoose.Schema({
+    title:{
+        type: String,
+        required : true,
+    },
+    author:{
+        type : String,
+    },
+    price : {
+        type : Number,
+    },
+    discount : {
+        type : Number,
+        default : 10,
+    },
+    category :{
+        type: String,
+        enum : ["Fictional", "Non-Fictional"],
+    },
+    genre : {
+        type : [String],
+    }
+});
+
+// Schema validations and update
+If you update and value then it is not follow any validation that are declared in Schema 
+So, make it happen you have to use a option in update method i.e. - {runValidators : true}
+ex-
+Book.findByIdAndUpdate("679bcb3fb37dbb0465b2e95d", {price : -68}, {runValidators: true}).then(res => console.log(res)).catch(err => console.log(err.errors.price.properties.message));
