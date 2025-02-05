@@ -1,0 +1,57 @@
+// Middleware
+It is an intermediary
+Request -> Middleware -> Response
+ex - in Express
+Middleware in express are functions that come into play after the server recieves
+the request and before the response is sent to the client.
+-- common Middleware functions :
+1. methodOverride
+2. bodyparser
+3. express.static 
+4. express.urlencoded
+ex - app.use(express.urlencoded({extended: true}));
+
+-- Three thing that Middleware can do -
+1. have access to req and res object of any request
+2. can perform chaning like one mdlware fn. can give it res to another mdlware and so on.
+    req -> mdl1 fn. -> (res) -> mdl2 fn. -> mdl3 fn. -> final res
+3. send a response such that this res can override the res of required req...
+   // Middleware fun. -> response 
+   // this response - can override the below req
+   // app.get("/", (req, res) => {res.send});
+
+-- Middleware fn. can perform the following tasks:
+1. Execute any code
+2. Make changes to the request and the response objs.
+3. End the request-response cycle.
+4. call the next middleware fn. in the stack
+
+-- Middleware can do two things whenever a req come -
+either send response or call next middleware
+
+// Our 1st Middleware
+app.get((req,res) => {
+    console.log("Hi, I am middleware);
+    res.send("middleware finished);
+});
+
+**//** Middleware always work irrespesctive of request type or whatever is send in req.. even that path doesn't exist on our server but mdlware will run definetely.
+
+// Using next()
+** to know more about middlewares just read in docs of express
+The next middleware fun. is commonly denoted by a variable named next.
+app.use((req, res, next) => { 
+    console.log('Time:', Date.now());
+    next();
+});
+- If the current middleware fun. does not end the req-res cycle, it must call next() to pass control to the next middleware function.
+like if we use next() then it search if another middleware defined in file to follow chaining, if not then send res of req if its path defined in the main file.
+
+**//** You always use middlewares in starting of our code and never in the last of the code b/c if we do so then middleware do not work properly b/c req and res cycle already completed by their required paths.
+
+// You should check index.js to learn about utility middleware, customised path middleware, passing multiple middlewares and express default error handler
+
+// Haddling Errors
+Generally error comes in any code in production level. So, to handle them express already have default error handler which will show whole error stact on webpage whenever error occur on the site.
+But, you can also customised these errors and show or handle them as you want.
+ex- check for checkToken middleware we throw error by using express default error handler
