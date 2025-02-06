@@ -1,0 +1,6 @@
+// Error handling middleware
+in express middlewares
+next() -> means call next non-error handling middleware
+next(err) -> means call next error handling error
+
+- Define error-handling middleware functions in the same way as other middleware functions, except with four arguments instead of three, specifically with the signature (err, req, res, next):

@@ -22,7 +22,10 @@
                         <button style="margin-right: 10px; background-color:limegreen;">Edit</button>
                     </form>
                     <form action="/chats/<%= chat._id %>?_method=DELETE" method="post">
-                        <button style="background-color: orangered;">Delete</button>
+                        <button style="background-color: orangered; margin-right: 10px;">Delete</button>
+                    </form>
+                    <form action="/chats/<%= chat._id %>" method="get">
+                        <button>Show</button>
                     </form>
                 </div>
             </div>
